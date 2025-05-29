@@ -51,7 +51,7 @@ export default function Home() {
               </p>
             </div>
             <div className="max-w-[350px] h-[350px] absolute top-50 right-50">
-              <SlNotebook className="w-full text-9xl text-start bg-transparent ease duration-300 hover:rotate-z-[-15deg]" />
+              <SlNotebook className="w-full text-9xl text-start bg-transparent ease duration-300 hover:rotate-z-[-15deg] animate-" />
             </div>
           </div>
         </div>

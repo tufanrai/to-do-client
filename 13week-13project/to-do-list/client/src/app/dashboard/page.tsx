@@ -1,15 +1,58 @@
 "use client";
+import { createTask } from "@/src/api/createTask.api";
+import { Itask } from "@/src/interface/index.inteface";
+import { taskSchema } from "@/src/schema/form-schema/task.schema";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useMutation } from "@tanstack/react-query";
 import React, { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { IoIosAddCircleOutline } from "react-icons/io";
+import toast from "react-hot-toast";
+import Cookies from "js-cookie";
 
-const page = () => {
+const Page = () => {
+  // mutation
+  const { mutate, isPending } = useMutation({
+    mutationFn: createTask,
+    onSuccess: (data) => {
+      console.log(data);
+      toast.success("task has been created successfully");
+      reset();
+    },
+    onError: (error) => {
+      console.log(error.message);
+      toast.error("something went wrong please try again leter");
+    },
+  });
+
+  // input validation
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<Itask>({
+    defaultValues: {
+      title: "",
+      disc: "",
+    },
+    resolver: yupResolver(taskSchema),
+  });
+
+  const Submit: SubmitHandler<Itask> = (data) => {
+    mutate(data);
+  };
+
+  // show and hide the task adding card
   const [show, setShow] = useState(false);
-
   const displayCard = () => {
     setShow(true);
   };
   const hideCard = () => {
-    setShow(false);
+    setTimeout(() => {
+      reset();
+      setShow(false);
+    }, 100);
   };
   return (
     <div className="w-full h-screen px-9 py-5">
@@ -26,27 +69,34 @@ const page = () => {
             Add task
           </span>
           {show && show ? (
-            <form className="border-1 rounded-t-md border-slate-400">
+            <form
+              onSubmit={handleSubmit(Submit)}
+              className="border-1 rounded-t-md border-slate-400"
+            >
               <input
-                className="w-full px-3 py-1 rounded-t-md h-12 "
+                className="w-full px-3 py-1 rounded-t-md h-12 focus:outline-0 "
+                {...register("title")}
                 type="text"
                 placeholder="Title"
               />
               <input
-                className="w-full px-3 py-1 h-9 text-sm font-thin"
+                className="w-full px-3 py-1 h-9 text-sm font-thin focus:outline-0"
+                {...register("disc")}
                 type="text"
                 placeholder="Discription"
               />
               <div className="w-full flex gap-4 items-center justify-end border-t-1 border-slate-400 px-5 py-3">
                 <button
-                  onClick={hideCard}
                   type="reset"
+                  onClick={hideCard}
                   className="px-3 py-1 border-1 rounded-sm text-sm font-thin text-slate-400 ease duration-200 hover:bg-slate-400 hover:text-slate-100"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
+                  disabled={isPending}
+                  onClick={hideCard}
                   className="px-3 py-1 border-1 border-primary rounded-sm text-sm font-thin text-primary ease duration-200 hover:bg-primary hover:text-slate-100"
                 >
                   Add
@@ -62,4 +112,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
