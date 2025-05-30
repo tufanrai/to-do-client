@@ -32,7 +32,7 @@ const SignupPage = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<ISignup>({
+  } = useForm({
     defaultValues: {
       name: "",
       email: "",
@@ -46,7 +46,7 @@ const SignupPage = () => {
     mutate(data);
   };
   return (
-    <div className="w-full h-screen bg-background overflow-hidden flex items-center justify-center">
+    <div className="w-full h-screen bg-stone-50 overflow-hidden flex items-center justify-center">
       <div className="max-w-[350px] w-full border-1 border-primary rounded-ss-lg rounded-ee-lg shadow-lg shadow-primary/75 relative">
         <div className="absolute top-0 left-0 p-4 bg-primary/25 rounded-ee-xl w-13 h-13 flex items-center justify-center ">
           <Link href={"/"}>

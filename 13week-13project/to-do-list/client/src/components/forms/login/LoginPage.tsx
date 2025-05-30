@@ -1,28 +1,30 @@
 "use client";
-import { log } from "@/src/api/createTask.api";
+import { login } from "@/src/api/createTask.api";
 import { Ilog } from "@/src/interface/index.inteface";
 import { logSchema } from "@/src/schema/form-schema/task.schema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation } from "@tanstack/react-query";
 import Link from "next/link";
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { IoIosArrowDropup } from "react-icons/io";
+import Cookies from "js-cookie";
 
 const LogPage = () => {
-  //const route = useRouter();
+  const route = useRouter();
   // mutation
   const { mutate, isPending } = useMutation({
-    mutationFn: log,
+    mutationFn: login,
     onSuccess: (data) => {
-      console.log(data);
+      console.log(data?.data);
       toast.success("successfully loged in");
-      // route.replace("/dashboard");
+      Cookies.set("token", data?.data.access_token);
+      route.replace("/dashboard");
     },
     onError: (error) => {
-      toast.error("something went wrong please try again later");
+      toast.error(error.message);
       console.log(error.message);
     },
   });
@@ -44,7 +46,7 @@ const LogPage = () => {
     mutate(data);
   };
   return (
-    <div className="w-full h-screen bg-background overflow-hidden flex items-center justify-center">
+    <div className="w-full h-screen bg-stone-50 overflow-hidden flex items-center justify-center">
       <div className="max-w-[350px] w-full border-1 border-primary rounded-ss-lg rounded-ee-lg shadow-lg shadow-primary/75 relative">
         <div className="absolute top-0 left-0 p-4 bg-primary/25 rounded-ee-xl w-13 h-13 flex items-center justify-center ">
           <Link href={"/"}>

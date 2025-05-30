@@ -6,7 +6,7 @@ import { GiNotebook } from "react-icons/gi";
 
 const Layout = ({ children }: Readonly<{ children: ReactNode }>) => {
   return (
-    <div className="w-full h-screen overflow-hidden bg-background flex justify-center">
+    <div className="w-full h-screen overflow-hidden bg-stone-50 flex justify-center">
       <div className="max-w-[1280px] w-full flex">
         <Toaster position="top-left" reverseOrder={false} />
         <div className="max-w-[240px] w-full h-screen border-r-1 border-slate-600">

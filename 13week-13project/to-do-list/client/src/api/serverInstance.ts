@@ -2,11 +2,9 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 const token = Cookies.get("token");
-const url = process.env.SERVER_URL;
+const URL = process.env.NEXT_PUBLIC_SERVER_URL ?? "";
 
+console.log("api", URL);
 export const apiInstance = axios.create({
-  headers: {
-    Authorization: `BEARER ${token}`,
-  },
-  baseURL: `${url}`,
+  baseURL: URL,
 });

@@ -5,7 +5,7 @@ import { SlNotebook } from "react-icons/sl";
 
 export default function Home() {
   return (
-    <div className="w-full h-screen flex justify-center bg-background text-brand overflow-hidden">
+    <div className="w-full h-screen flex justify-center bg-stone-50 text-brand overflow-hidden">
       <div className="max-w-[1280px] w-full relative">
         <div className="w-full">
           <ul className="flex items-center justify-between w-full px-6 py-4">
