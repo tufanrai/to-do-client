@@ -28,7 +28,6 @@ const page = () => {
             {query.data && query?.data
               ? // @ts-expect-error
                 query?.data.data?.map((task: any) => {
-                  // map always returns smthing
                   return (
                     <Checklist
                       tasks={task.title}
