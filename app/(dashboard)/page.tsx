@@ -4,7 +4,6 @@ import React from "react";
 import { getTask } from "../api/task.api";
 import TaskForm from "@/components/form/TaskForm";
 import Checklist from "@/components/checklist/Checklist";
-import { Authority } from "@/components/hoc/Authority";
 
 const page = () => {
   // query data
@@ -44,4 +43,4 @@ const page = () => {
   );
 };
 
-export default Authority(page);
+export default page;

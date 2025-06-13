@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { DecodeToken } from "@/helper/token-decode";
 
-export function Authority<T>(Component: React.ComponentType) {
+export function Authority<T>(Component: React.ComponentType<T>) {
   return function validatedToken(props: any) {
     const router = useRouter();
     const token = Cookies.get("access_token") ?? "";
