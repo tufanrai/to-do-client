@@ -1,12 +1,14 @@
 "use client";
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 const Header = () => {
-  let user = null;
+  const [user, setUser] = useState<string | null>(null);
   useEffect(() => {
     if (typeof window !== undefined) {
+      let user;
       user = localStorage.getItem("user");
+      setUser(user as string);
     }
   }, []);
 
@@ -14,7 +16,7 @@ const Header = () => {
     <div className="w-full px-8 py-4 flex items-center justify-between">
       <div>
         <p className="mr-auto px-5 py-2 font-thin italic text-black text-sm">
-          welcome, {user}
+          welcome,{user}
         </p>
       </div>
       <div>

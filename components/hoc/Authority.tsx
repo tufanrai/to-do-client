@@ -11,14 +11,15 @@ export function Authority<T>(Component: React.ComponentType<T>) {
     const token = Cookies.get("access_token") ?? "";
 
     const valid = DecodeToken(token);
+    console.log(valid);
     useEffect(() => {
       if (!valid) {
-        router.replace("/auth/login");
         if (token) {
           Cookies.remove("access_token");
         }
         localStorage.removeItem("user");
         toast.error("session expired, please login again");
+        router.replace("/auth/login");
         return;
       }
     }, []);
