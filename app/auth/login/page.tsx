@@ -17,7 +17,7 @@ const page = () => {
         </div>
         <div className="w-full flex items-center justify-center">
           <p className="font-thin text-sm text-black px-8 py-4">
-            Already have an account?{" "}
+            Don't have an account?{" "}
             <span className="text-blue-500">
               <Link href={"/auth/register"}>Sign up</Link>
             </span>
