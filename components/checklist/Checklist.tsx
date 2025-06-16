@@ -1,6 +1,8 @@
 "use client";
 import React, { FC, useState } from "react";
 import DeleteTask from "../remTask/DeleteTask";
+import { SlNote } from "react-icons/sl";
+import { useRouter } from "next/navigation";
 
 type task = {
   tasks: any[];
@@ -8,11 +10,17 @@ type task = {
 };
 
 const Checklist: FC<task> = ({ tasks, identity }) => {
+  const router = useRouter();
   const [complete, setComplete] = useState(false);
   const Done = () => {
     setComplete(!complete);
     console.log(tasks);
     console.log("this is what goes as the endpoint", identity);
+  };
+
+  const updateFn = (id: string) => {
+    router.replace("/update");
+    localStorage.setItem("upd_id", id);
   };
 
   return (
@@ -33,6 +41,15 @@ const Checklist: FC<task> = ({ tasks, identity }) => {
                   <del className="font-thin text-sm text-black">{tasks}</del>
                 </li>
                 <li className="ml-auto">
+                  <span className="text-blue-500 cursor-pointer">
+                    <SlNote
+                      onClick={() => {
+                        updateFn(identity);
+                      }}
+                    />
+                  </span>
+                </li>
+                <li className="ml-auto">
                   <DeleteTask id={identity} />
                 </li>
               </ul>
@@ -42,6 +59,15 @@ const Checklist: FC<task> = ({ tasks, identity }) => {
                   <li>
                     <span className="font-thin text-sm text-black">
                       {tasks}
+                    </span>
+                  </li>
+                  <li className="ml-auto">
+                    <span className="text-blue-500 cursor-pointer">
+                      <SlNote
+                        onClick={() => {
+                          updateFn(identity);
+                        }}
+                      />
                     </span>
                   </li>
                   <li className="ml-auto">

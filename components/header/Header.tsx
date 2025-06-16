@@ -2,6 +2,13 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
+interface IUser {
+  _id: string;
+  full_name: string;
+  user_name: string;
+  email: string;
+}
+
 const Header = () => {
   const [user, setUser] = useState<string | null>(null);
   useEffect(() => {
