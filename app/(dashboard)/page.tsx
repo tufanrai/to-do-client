@@ -12,9 +12,11 @@ const page = () => {
     queryFn: getTask,
   });
 
+  console.log(query.data);
+
   return (
     <div className="w-full h-screen flex items-center justify-center bg-white">
-      <div className="max-w-[350px] max-h-[500px] w-full h-full rounded-md">
+      <div className="max-w-[400px] max-h-[480px] w-full h-full rounded-md border border-slate-400 shadow-lg">
         <div className="px-16 py-8">
           <h1 className="font-bold text-xl text-black">To Dos</h1>
         </div>

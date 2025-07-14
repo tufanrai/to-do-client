@@ -56,7 +56,7 @@ const TaskForm = () => {
           placeholder="Add new task."
         />
         <button
-          className={`border-1 border-black rounded-md w-8 h-8 flex items-center justify-center text-white bg-black ${
+          className={`border-1 border-blue-500 rounded-md w-12 h-8 flex items-center justify-center text-white bg-blue-500 ${
             isPending && isPending ? "cursor-not-allowed" : "cursor-pointer"
           }`}
           type="submit"

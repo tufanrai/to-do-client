@@ -26,7 +26,7 @@ const Checklist: FC<task> = ({ tasks, identity }) => {
   return (
     <div className="w-full">
       {tasks && tasks ? (
-        <div className="w-full flex items-center justify-start border-b-1 border-slate-300 py-2">
+        <div className="w-full flex items-center justify-start border-b-1 border-slate-300 border-b-1 py-2">
           <div className="pl-8">
             <input
               type="checkbox"
@@ -36,11 +36,11 @@ const Checklist: FC<task> = ({ tasks, identity }) => {
           </div>
           <div className="w-full">
             {complete && complete ? (
-              <ul className="w-full flex items-center justify-start gap-3 px-8">
+              <ul className="w-full flex items-center justify-between gap-3 px-8">
                 <li>
                   <del className="font-thin text-sm text-black">{tasks}</del>
                 </li>
-                <li className="ml-auto">
+                <li className="ml-auto flex items-center justify-center gap-1">
                   <span className="text-blue-500 cursor-pointer">
                     <SlNote
                       onClick={() => {
@@ -48,8 +48,6 @@ const Checklist: FC<task> = ({ tasks, identity }) => {
                       }}
                     />
                   </span>
-                </li>
-                <li className="ml-auto">
                   <DeleteTask id={identity} />
                 </li>
               </ul>
@@ -61,7 +59,7 @@ const Checklist: FC<task> = ({ tasks, identity }) => {
                       {tasks}
                     </span>
                   </li>
-                  <li className="ml-auto">
+                  <li className="ml-auto flex items-center justify-center gap-1">
                     <span className="text-blue-500 cursor-pointer">
                       <SlNote
                         onClick={() => {
@@ -69,8 +67,6 @@ const Checklist: FC<task> = ({ tasks, identity }) => {
                         }}
                       />
                     </span>
-                  </li>
-                  <li className="ml-auto">
                     <DeleteTask id={identity} />
                   </li>
                 </ul>
